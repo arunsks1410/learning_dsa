@@ -1,5 +1,6 @@
 // Selection sort
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 class Sorting {
@@ -108,6 +109,54 @@ class Sorting {
         return mix;
     }
 
+    // Merge sort using indexes
+    static void mergeSort1(int[] arr, int low, int high) {
+
+        if (low >= high)
+            return;
+
+        int mid = (low + high) / 2;
+
+        mergeSort1(arr, low, mid);
+        mergeSort1(arr, mid + 1, high);
+        merge1(arr, low, mid, high);
+    }
+
+    private static void merge1(int[] arr, int low, int mid, int high) {
+        ArrayList<Integer> temp = new ArrayList<>();
+
+        int left = low;
+        int right = mid + 1;
+
+        while (left <= mid && right <= high) {
+            if (arr[left] <= arr[right]) {
+                temp.add(arr[left]);
+                left++;
+            } else {
+                temp.add(arr[right]);
+                right++;
+            }
+        }
+
+        while (left <= mid) {
+            temp.add(arr[left]);
+            left++;
+        }
+
+        while (right <= high) {
+            temp.add(arr[right]);
+            right++;
+        }
+
+        // System.out.println("temp : " + temp + " low : " + low + " high : " + high);
+
+        for (int i = low; i <= high; i++) {
+            arr[i] = temp.get(i - low);
+        }
+        // System.out.println("temp : " + temp);
+
+    }
+
     public static void main(String[] args) {
 
         int[] ssArr = { 76, 54, 3, 2, 20, 11, 32 };
@@ -129,6 +178,11 @@ class Sorting {
         System.out.println("\n mergeArr : " + Arrays.toString(mergeArr));
         int[] resultMergeArr = mergeSort(mergeArr);
         System.out.println("resultMergeArr : " + Arrays.toString(resultMergeArr));
+
+        int[] mergeArr1 = { 3, 1, 2, 4, 1, 5, 2, 6, 4 };
+        int n = mergeArr1.length;
+        mergeSort1(mergeArr1, 0, n - 1);
+        System.out.println("After merge sort : " + Arrays.toString(mergeArr1));
 
     }
 }
