@@ -100,7 +100,8 @@ class LearningHashing {
 
     }
 
-    public static void main(String[] args) {
+
+    private static void main(String[] args) {
 
         System.out.println("inside hash main !!! ");
         int[] numbers = { 10, 5, 10, 15, 10, 5 };
@@ -109,6 +110,7 @@ class LearningHashing {
         countFreqOfGivenArrayUsingMap(numbers, numbers.length);
 
         findTheHighestAndLowestFreq(numbers);
+        
     }
 
 }
